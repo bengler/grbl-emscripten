@@ -668,9 +668,9 @@ var DYNAMIC_BASE = 0, DYNAMICTOP = 0; // dynamic area handled by sbrk
 function enlargeMemory() {
   abort('Cannot enlarge memory arrays. Either (1) compile with -s TOTAL_MEMORY=X with X higher than the current value, (2) compile with ALLOW_MEMORY_GROWTH which adjusts the size at runtime but prevents some optimizations, or (3) set Module.TOTAL_MEMORY before the program runs.');
 }
-var TOTAL_STACK = Module['TOTAL_STACK'] || 5242880;
-var TOTAL_MEMORY = Module['TOTAL_MEMORY'] || 16777216;
-var FAST_MEMORY = Module['FAST_MEMORY'] || 2097152;
+var TOTAL_STACK = Module['TOTAL_STACK'] || 2048;
+var TOTAL_MEMORY = Module['TOTAL_MEMORY'] || 32768;
+var FAST_MEMORY = Module['FAST_MEMORY'] || 32768;
 // Initialize the runtime's memory
 // check for full engine support (use string 'subarray' to avoid closure compiler confusion)
 assert(!!Int32Array && !!Float64Array && !!(new Int32Array(1)['subarray']) && !!(new Int32Array(1)['set']),
@@ -1424,7 +1424,7 @@ Module["requestFullScreen"] = function(lockPointer, resizeCanvas) { Browser.requ
   Module["getUserMedia"] = function() { Browser.getUserMedia() }
 STACK_BASE = STACKTOP = Runtime.alignMemory(STATICTOP);
 staticSealed = true; // seal the static portion of memory
-STACK_MAX = STACK_BASE + 5242880;
+STACK_MAX = STACK_BASE + 2048;
 DYNAMIC_BASE = DYNAMICTOP = Runtime.alignMemory(STACK_MAX);
 assert(DYNAMIC_BASE < TOTAL_MEMORY); // Stack must fit in TOTAL_MEMORY; allocations from here on may enlarge TOTAL_MEMORY
 var FUNCTION_TABLE = [0, 0];
@@ -4578,6 +4578,11 @@ function _protocol_execute_line($line) {
 function _st_get_step_events_remaining() {
  var label = 0;
  var $1=HEAP32[((((136)|0))>>2)];
+ return $1;
+}
+function _st_get_current_rate() {
+ var label = 0;
+ var $1=HEAP32[((((140)|0))>>2)];
  return $1;
 }
 function _st_wake_up() {

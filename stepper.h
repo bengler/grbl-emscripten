@@ -49,4 +49,6 @@ uint8_t st_iterate();
 
 uint32_t st_get_step_events_remaining();
 
+int32_t st_get_current_rate();
+
 #endif

@@ -127,6 +127,10 @@ uint32_t st_get_step_events_remaining() {
   return st.step_events_remaining;
 }
 
+int32_t st_get_current_rate() {
+  return st.delta_d;
+}
+
 
 // "The Stepper Driver Interrupt" - This timer interrupt is the workhorse of Grbl. It is based
 // on the Pramod Ranade inverse time stepper algorithm, where a timer ticks at a constant
