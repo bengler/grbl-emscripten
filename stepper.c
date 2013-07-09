@@ -128,6 +128,9 @@ uint32_t st_get_step_events_remaining() {
 }
 
 int32_t st_get_current_rate() {
+  if (st.step_events_remaining == 0) {
+    return 0;
+  }
   return st.delta_d;
 }
 
