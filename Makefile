@@ -49,7 +49,7 @@ all:	grbl.js
 
 grbl.js: $(OBJECTS)
 	emcc $(OBJECTS) --js-library library.js -o grbl.js -s LINKABLE=1 -s TOTAL_MEMORY=65536 -s TOTAL_STACK=2048 -s FAST_MEMORY=32768
-	cp grbl.js /Users/simenss/_dev/pebbles/benglerweb/js/
+	closure-compiler grbl.js > /Users/simenss/_dev/pebbles/benglerweb/js/grbl.js
 
 .c.o:
 	$(COMPILE) -c $< -o $@
