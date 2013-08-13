@@ -48,7 +48,7 @@ COMPILE = emcc -Wall -Os -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) -I. -ffunction-section
 all:	grbl.js
 
 grbl.js: $(OBJECTS)
-	emcc $(OBJECTS) --js-library library.js -o grbl.js -s LINKABLE=1 -s TOTAL_MEMORY=65536 -s TOTAL_STACK=2048 -s FAST_MEMORY=32768
+	emcc $(OBJECTS) --js-library library.js -o grbl.js -s LINKABLE=1 -s TOTAL_MEMORY=65536 -s TOTAL_STACK=2048 -s FAST_MEMORY=32768 MODULE_NAME=GrblEmscripten
 	closure-compiler grbl.js > /Users/simenss/_dev/pebbles/benglerweb/js/grbl.js
 
 .c.o:
